@@ -1,0 +1,14 @@
+1. Three web servers, each running a web server, application server, and database.
+2. Three firewalls (for protection against unauthorized access, DDoS attacks, and securing the internal network).
+3. One SSL certificate for www.foobar.com (to serve traffic over HTTPS, ensuring encrypted communication and user data protection).
+4. Three monitoring clients (to collect data for monitoring services like Sumologic, enabling real-time visibility and anomaly detection).
+
+Monitoring is used to track the performance, availability, and security of the web infrastructure. Monitoring tools collect data through logs, metrics, and traces from the servers, network devices, and applications.
+
+To monitor web server QPS, you can use monitoring tools to track the number of requests per second (QPS) and analyze trends, outliers, and performance issues.
+
+Issues with this infrastructure:
+
+1. Terminating SSL at the load balancer level can cause potential security risks, as it may expose the internal network to man-in-the-middle attacks.
+2. Having only one MySQL server capable of accepting writes can lead to a single point of failure, impacting availability and data consistency.
+3. Having servers with all the same components can be problematic, as it may not allow for efficient resource utilization, and can increase the risk of correlated failures.

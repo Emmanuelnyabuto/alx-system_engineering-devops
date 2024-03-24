@@ -1,0 +1,11 @@
+In this three-server web infrastructure, we add two additional servers to distribute the workload and improve availability.
+
+First, we add a load balancer (HAproxy) to distribute incoming traffic between the two application servers. This eliminates the SPOF issue present in the one-server setup. The load balancer can be configured with a distribution algorithm, such as Round Robin, which sends requests to each server in turn, ensuring an even distribution of traffic.
+
+The load balancer can be configured in either Active-Active or Active-Passive mode. In Active-Active mode, both servers are active and handle incoming traffic. In Active-Passive mode, one server is active and handles incoming traffic, while the other server is passive and only takes over if the active server fails.
+
+Next, we add a MySQL database Primary-Replica (Master-Slave) cluster. The primary node is used for writing, while the replica node is used for reading. This setup improves read performance and provides redundancy, as the replica node can take over if the primary node fails.
+
+The application server on the primary node writes data to the database, while the application server on the replica node reads data from the database. This ensures data consistency and eliminates the need for the web server to communicate directly with the database.
+
+However, this infrastructure still has some issues. There are no firewalls or HTTPS encryption, which can lead to security vulnerabilities. Additionally, there is no monitoring in place, which makes it difficult to detect and resolve issues in a timely manner.
